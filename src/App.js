@@ -1,22 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import { useTheme } from "./store/card-sontext-api";
+import "./App.css";
+import Card from "./component/Card";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>{theme === "light" ? "Light Mode" : "Dark Mode"}</h1>
+        <button onClick={toggleTheme}>
+          Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        </button>
+        <Card
+          title="Card Title"
+          content="This is an example of a card content. It adjusts according to the theme."
+        />
       </header>
     </div>
   );
